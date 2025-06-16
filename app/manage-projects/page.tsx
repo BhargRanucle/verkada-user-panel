@@ -17,14 +17,37 @@ import {
 } from "@/components/ui/table";
 
 const specifications = [
-  { id: 1, name: "Video Surveillance by Verkada", thumbnail: "/placeholder.svg?height=120&width=160" },
-  { id: 2, name: "Access Control by Verkada", thumbnail: "/placeholder.svg?height=120&width=160" },
-  { id: 3, name: "Intercom Entry by Verkada", thumbnail: "/placeholder.svg?height=120&width=160" },
-  { id: 4, name: "Video Surveillance 2 by Verkada", thumbnail: "/placeholder.svg?height=120&width=160" },
-  { id: 5, name: "Intrusion Detection by Verkada", thumbnail: "/placeholder.svg?height=120&width=160" },
-  { id: 6, name: "Access Control Badges", thumbnail: "/placeholder.svg?height=120&width=160" },
-]
-
+  {
+    id: 1,
+    name: "Video Surveillance by Verkada",
+    thumbnail: "/placeholder.svg?height=120&width=160",
+  },
+  {
+    id: 2,
+    name: "Access Control by Verkada",
+    thumbnail: "/placeholder.svg?height=120&width=160",
+  },
+  {
+    id: 3,
+    name: "Intercom Entry by Verkada",
+    thumbnail: "/placeholder.svg?height=120&width=160",
+  },
+  {
+    id: 4,
+    name: "Video Surveillance 2 by Verkada",
+    thumbnail: "/placeholder.svg?height=120&width=160",
+  },
+  {
+    id: 5,
+    name: "Intrusion Detection by Verkada",
+    thumbnail: "/placeholder.svg?height=120&width=160",
+  },
+  {
+    id: 6,
+    name: "Access Control Badges",
+    thumbnail: "/placeholder.svg?height=120&width=160",
+  },
+];
 
 // Sample data for projects
 const projects = [
@@ -82,7 +105,7 @@ export default function ManageProjects() {
   );
 
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const [itemsPerPage, setItemsPerPage] = useState(5);
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -221,30 +244,53 @@ export default function ManageProjects() {
             </div>
           </CardContent>
         </Card>
-        <div className="flex justify-center items-center gap-2 mt-4">
-          <Button
-            size="sm"
-            variant="outline"
-            className="h-7 text-xs"
-            disabled={currentPage === 1}
-            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-          >
-            Previous
-          </Button>
-          <span className="text-xs">
-            Page {currentPage} of {totalPages}
-          </span>
-          <Button
-            size="sm"
-            variant="outline"
-            className="h-7 text-xs"
-            disabled={currentPage === totalPages}
-            onClick={() =>
-              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-            }
-          >
-            Next
-          </Button>
+        <div className="flex justify-between items-center mt-4">
+          <div className="flex items-center gap-2 text-xs">
+            <label htmlFor="itemsPerPage" className="text-gray-600">
+              Items per page:
+            </label>
+            <select
+              id="itemsPerPage"
+              value={itemsPerPage}
+              onChange={(e) => {
+                setItemsPerPage(Number(e.target.value));
+                setCurrentPage(1); // Reset to page 1
+              }}
+              className="border border-gray-300 rounded-md px-2 py-1 text-xs bg-white"
+            >
+              {[5, 10, 15, 25, 50].map((count) => (
+                <option key={count} value={count}>
+                  {count}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          <div className="flex items-center gap-2 text-xs">
+            <Button
+              size="sm"
+              variant="outline"
+              className="h-7 text-xs"
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+            >
+              Previous
+            </Button>
+            <span>
+              Page {currentPage} of {totalPages}
+            </span>
+            <Button
+              size="sm"
+              variant="outline"
+              className="h-7 text-xs"
+              disabled={currentPage === totalPages}
+              onClick={() =>
+                setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+              }
+            >
+              Next
+            </Button>
+          </div>
         </div>
       </div>
     </MainLayout>
