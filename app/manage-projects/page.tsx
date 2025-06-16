@@ -112,7 +112,7 @@ export default function ManageProjects() {
                   placeholder="Search projects..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-7 h-7 text-xs border border-black/30 bg-white/50 focus:bg-white/80 transition-all duration-200 angular-border-small"
+                  className="pl-7 h-7 text-xs border border-black/30 bg-white/50 focus:bg-white/80 transition-all duration-200"
                 />
               </div>
             </div>
