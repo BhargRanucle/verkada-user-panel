@@ -49,11 +49,11 @@ export default function ProjectForm({ params }: { params: { id: string } }) {
         </div>
 
         {/* <Card className=""> */}
-          <CardHeader className="pb-2">
+          {/* <CardHeader className="pb-2"> */}
             {/* <CardTitle className="text-sm font-semibold">
               Project Details:
             </CardTitle> */}
-          </CardHeader>
+          {/* </CardHeader> */}
           <DocGenerator />
          
 

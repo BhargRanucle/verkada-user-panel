@@ -73,7 +73,7 @@ export function Navbar() {
           <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-400 h-3 w-3" />
           <Input
             placeholder="Search projects..."
-            className="pl-7 h-7 text-xs bg-white/50 border-white/30 focus:bg-white/80 transition-all duration-200 angular-border-small"
+            className="pl-7 h-7 text-xs bg-white/50 border border-black/30 focus:bg-white/80 transition-all duration-200 angular-border-small"
           />
         </div>
       </div>
