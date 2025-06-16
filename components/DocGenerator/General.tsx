@@ -7,6 +7,15 @@ import { ErrorMessage, Field, FieldArray, Form, Formik } from "formik";
 import { cn } from "@/lib/utils";
 import * as Yup from "yup";
 import TextEditorField from "./TextEditor";
+import { 
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import { CalendarIcon, Trash2, Edit3, Eye, History } from "lucide-react";
+import { format } from "date-fns";
 
 
 export default function General() {
@@ -180,6 +189,7 @@ export default function General() {
       General Information
     </h4>
     <div className="border-t-[1px] border-[black]"></div> */}
+     <div className="border-t-[1px] border-[#aeaeae]"></div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-3">
               <div className="space-y-1.5">
                 <Label
@@ -257,7 +267,7 @@ export default function General() {
                 >
                   Issuance Date
                 </Label>
-                {/* <Popover>
+                <Popover>
           <PopoverTrigger asChild>
             <Button
               variant="outline"
@@ -291,9 +301,9 @@ export default function General() {
         </Popover>
         {errors.issuanceDate && touched.issuanceDate && (
           <p className="text-red-500 text-xs">
-            {errors.issuanceDate}
+            {/* {errors.issuanceDate} */}
           </p>
-        )} */}
+        )}
               </div>
             </div>
 

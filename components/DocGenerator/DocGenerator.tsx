@@ -172,7 +172,7 @@ const DocGenerator: React.FC = () => {
   ]);
 
   return (
-    <div className="container mx-auto py-2">
+    <div className="container mx-auto p-0">
       <div className="mb-4 shadow-sm">
         {/* <CardContent className="p-3 border-none bg-transparent"> */}
         <Accordion
@@ -263,7 +263,7 @@ const DocGenerator: React.FC = () => {
               className="bg-white border rounded-[5px] p-4"
             >
               <AccordionItem value={section.value} className="border-0">
-                <AccordionTrigger className="text-lg font-bold underline font-medium py-2">
+                <AccordionTrigger className="text-lg font-bold font-medium py-2">
                   {section.title}
                   <ChevronDown className="h-4 w-4 transition-transform duration-300 group-data-[state=open]:rotate-180" />
                 </AccordionTrigger>

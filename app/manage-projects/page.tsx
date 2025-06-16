@@ -16,46 +16,56 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
+const specifications = [
+  { id: 1, name: "Video Surveillance by Verkada", thumbnail: "/placeholder.svg?height=120&width=160" },
+  { id: 2, name: "Access Control by Verkada", thumbnail: "/placeholder.svg?height=120&width=160" },
+  { id: 3, name: "Intercom Entry by Verkada", thumbnail: "/placeholder.svg?height=120&width=160" },
+  { id: 4, name: "Video Surveillance 2 by Verkada", thumbnail: "/placeholder.svg?height=120&width=160" },
+  { id: 5, name: "Intrusion Detection by Verkada", thumbnail: "/placeholder.svg?height=120&width=160" },
+  { id: 6, name: "Access Control Badges", thumbnail: "/placeholder.svg?height=120&width=160" },
+]
+
+
 // Sample data for projects
 const projects = [
   {
     id: 1,
-    specName: "28 10 00 Access Control 24.4",
+    specName: "Video Surveillance by Verkada",
     clientName: "Dan Gadhavi",
     clientAddress: "123 Business Ave, Suite 100, New York, NY 10001",
     createdDate: "2023-05-15",
   },
   {
     id: 2,
-    specName: "28 15 23 Intercom Entry Systems 25.1",
+    specName: "Access Control by Verkada",
     clientName: "Bharg Patel",
     clientAddress: "456 Innovation Blvd, San Francisco, CA 94107",
     createdDate: "2023-06-22",
   },
   {
     id: 3,
-    specName: "28 17 11 Visitor Management Systems 25.1",
+    specName: "Intercom Entry by Verkada",
     clientName: "Dan Client",
     clientAddress: "789 Corporate Park, Chicago, IL 60601",
     createdDate: "2023-07-10",
   },
   {
     id: 4,
-    specName: "28 20 00 Video Surveillance, Gateways, Connector 25.1",
+    specName: "Video Surveillance 2 by Verkada",
     clientName: "Brian D'souza",
     clientAddress: "321 Venture St, Austin, TX 78701",
     createdDate: "2023-08-05",
   },
   {
     id: 5,
-    specName: "28 30 00 Environmental Sensors 25.1",
+    specName: "Intrusion Detection by Verkada",
     clientName: "Startup Solutions",
     clientAddress: "321 Venture St, Austin, TX 78701",
     createdDate: "2023-08-05",
   },
   {
     id: 6,
-    specName: "28 31 00 Intrusion Detection 25.1",
+    specName: "Access Control Badges",
     clientName: "TCC",
     clientAddress: "321 Venture St, Austin, TX 78701",
     createdDate: "2023-08-05",
