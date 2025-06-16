@@ -48,160 +48,16 @@ export default function ProjectForm({ params }: { params: { id: string } }) {
           </div>
         </div>
 
-        <Card className="stormtrooper-glass angular-border">
+        {/* <Card className=""> */}
           <CardHeader className="pb-2">
             {/* <CardTitle className="text-sm font-semibold">
               Project Details:
             </CardTitle> */}
-             <DocGenerator />
           </CardHeader>
-          <CardContent>
-            {/* <Accordion
-              type="multiple"
-              className="w-full space-y-4"
-              value={openItems}
-              onValueChange={(values) => setOpenItems(values)}
-            >
-              {[
-                {
-                  value: "general",
-                  title: "General Information",
-                  content: (
-                    <>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <div className="space-y-1">
-                          <Label htmlFor="projectName" className="text-xs">
-                            Project Name
-                          </Label>
-                          <Input
-                            id="projectName"
-                            className="h-7 text-xs angular-border-small"
-                          />
-                        </div>
-                        <div className="space-y-1">
-                          <Label htmlFor="projectDate" className="text-xs">
-                            Start Date
-                          </Label>
-                          <Input
-                            id="projectDate"
-                            type="date"
-                            className="h-7 text-xs angular-border-small"
-                          />
-                        </div>
-                      </div>
-                      <div className="space-y-1">
-                        <Label htmlFor="projectDescription" className="text-xs">
-                          Project Description
-                        </Label>
-                        <Textarea
-                          id="projectDescription"
-                          className="text-xs angular-border-small"
-                          rows={3}
-                        />
-                      </div>
-                    </>
-                  ),
-                },
-                {
-                  value: "products",
-                  title: "Products",
-                  content: (
-                    <>
-                      <div className="space-y-1">
-                        <Label htmlFor="productList" className="text-xs">
-                          Product List
-                        </Label>
-                        <Textarea
-                          id="productList"
-                          className="text-xs angular-border-small"
-                          rows={3}
-                        />
-                      </div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <div className="space-y-1">
-                          <Label htmlFor="productQuantity" className="text-xs">
-                            Quantity
-                          </Label>
-                          <Input
-                            id="productQuantity"
-                            type="number"
-                            className="h-7 text-xs angular-border-small"
-                          />
-                        </div>
-                        <div className="space-y-1">
-                          <Label htmlFor="productPrice" className="text-xs">
-                            Price
-                          </Label>
-                          <Input
-                            id="productPrice"
-                            type="number"
-                            className="h-7 text-xs angular-border-small"
-                          />
-                        </div>
-                      </div>
-                    </>
-                  ),
-                },
-                {
-                  value: "execution",
-                  title: "Execution",
-                  content: (
-                    <>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <div className="space-y-1">
-                          <Label htmlFor="executionDate" className="text-xs">
-                            Execution Date
-                          </Label>
-                          <Input
-                            id="executionDate"
-                            type="date"
-                            className="h-7 text-xs angular-border-small"
-                          />
-                        </div>
-                        <div className="space-y-1">
-                          <Label
-                            htmlFor="executionLocation"
-                            className="text-xs"
-                          >
-                            Location
-                          </Label>
-                          <Input
-                            id="executionLocation"
-                            className="h-7 text-xs angular-border-small"
-                          />
-                        </div>
-                      </div>
-                      <div className="space-y-1">
-                        <Label htmlFor="executionNotes" className="text-xs">
-                          Execution Notes
-                        </Label>
-                        <Textarea
-                          id="executionNotes"
-                          className="text-xs angular-border-small"
-                          rows={3}
-                        />
-                      </div>
-                    </>
-                  ),
-                },
-              ].map((section) => (
-                <div
-                  key={section.value}
-                  className="bg-white border rounded-[5px] p-4"
-                >
-                  <AccordionItem value={section.value} className="border-0">
-                    <AccordionTrigger className="text-sm font-medium py-2">
-                      {section.title}
-                    </AccordionTrigger>
-                    <AccordionContent className="pt-2 pb-1 space-y-3">
-                      {section.content}
-                    </AccordionContent>
-                  </AccordionItem>
-                </div>
-              ))}
-            </Accordion> */}
+          <DocGenerator />
+         
 
-            <div className="flex justify-end mt-4">
+            <div className="flex justify-end mx-4">
               <Button
                 type="submit"
                 className="h-8 text-xs black-glass text-white hover:bg-gray-900 angular-border-small"
@@ -209,8 +65,7 @@ export default function ProjectForm({ params }: { params: { id: string } }) {
                 Create Project
               </Button>
             </div>
-          </CardContent>
-        </Card>
+        {/* </Card> */}
       </div>
     </MainLayout>
   );

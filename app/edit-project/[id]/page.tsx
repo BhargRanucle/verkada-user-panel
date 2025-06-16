@@ -68,141 +68,8 @@ export default function EditProject({ params }: { params: { id: string } }) {
           </TabsList>
 
           <TabsContent value="edit">
-            <Card className="stormtrooper-glass angular-border">
-              {/* <CardHeader className="pb-2">
-                <CardTitle className="text-sm font-semibold">Project Details</CardTitle>
-              </CardHeader> */}
-              <CardContent>
+           
                 <DocGenerator />
-                {/* <Accordion type="multiple" className="w-full">
-
-                  <AccordionItem value="general" className="border-b">
-                    <AccordionTrigger className="text-sm font-medium py-2">General Information</AccordionTrigger>
-                    <AccordionContent className="pt-2 pb-4">
-                      <div className="space-y-3">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                          <div className="space-y-1">
-                            <Label htmlFor="projectName" className="text-xs">
-                              Project Name
-                            </Label>
-                            <Input
-                              id="projectName"
-                              defaultValue="Standard Project"
-                              className="h-7 text-xs angular-border-small"
-                            />
-                          </div>
-                          <div className="space-y-1">
-                            <Label htmlFor="projectDate" className="text-xs">
-                              Start Date
-                            </Label>
-                            <Input
-                              id="projectDate"
-                              type="date"
-                              defaultValue="2023-05-15"
-                              className="h-7 text-xs angular-border-small"
-                            />
-                          </div>
-                        </div>
-                        <div className="space-y-1">
-                          <Label htmlFor="projectDescription" className="text-xs">
-                            Project Description
-                          </Label>
-                          <Textarea
-                            id="projectDescription"
-                            defaultValue="Standard project implementation for Acme Corp."
-                            className="text-xs angular-border-small"
-                            rows={3}
-                          />
-                        </div>
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-
-                  <AccordionItem value="products" className="border-b">
-                    <AccordionTrigger className="text-sm font-medium py-2">Products</AccordionTrigger>
-                    <AccordionContent className="pt-2 pb-4">
-                      <div className="space-y-3">
-                        <div className="space-y-1">
-                          <Label htmlFor="productList" className="text-xs">
-                            Product List
-                          </Label>
-                          <Textarea
-                            id="productList"
-                            defaultValue="Product A, Product B, Product C"
-                            className="text-xs angular-border-small"
-                            rows={3}
-                          />
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                          <div className="space-y-1">
-                            <Label htmlFor="productQuantity" className="text-xs">
-                              Quantity
-                            </Label>
-                            <Input
-                              id="productQuantity"
-                              type="number"
-                              defaultValue="10"
-                              className="h-7 text-xs angular-border-small"
-                            />
-                          </div>
-                          <div className="space-y-1">
-                            <Label htmlFor="productPrice" className="text-xs">
-                              Price
-                            </Label>
-                            <Input
-                              id="productPrice"
-                              type="number"
-                              defaultValue="1000"
-                              className="h-7 text-xs angular-border-small"
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-
-                  <AccordionItem value="execution" className="border-b">
-                    <AccordionTrigger className="text-sm font-medium py-2">Execution</AccordionTrigger>
-                    <AccordionContent className="pt-2 pb-4">
-                      <div className="space-y-3">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                          <div className="space-y-1">
-                            <Label htmlFor="executionDate" className="text-xs">
-                              Execution Date
-                            </Label>
-                            <Input
-                              id="executionDate"
-                              type="date"
-                              defaultValue="2023-06-15"
-                              className="h-7 text-xs angular-border-small"
-                            />
-                          </div>
-                          <div className="space-y-1">
-                            <Label htmlFor="executionLocation" className="text-xs">
-                              Location
-                            </Label>
-                            <Input
-                              id="executionLocation"
-                              defaultValue="Client Site"
-                              className="h-7 text-xs angular-border-small"
-                            />
-                          </div>
-                        </div>
-                        <div className="space-y-1">
-                          <Label htmlFor="executionNotes" className="text-xs">
-                            Execution Notes
-                          </Label>
-                          <Textarea
-                            id="executionNotes"
-                            defaultValue="Standard implementation process to be followed."
-                            className="text-xs angular-border-small"
-                            rows={3}
-                          />
-                        </div>
-                      </div>
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion> */}
 
                 <div className="flex justify-end mt-4">
                   <Button
@@ -212,8 +79,7 @@ export default function EditProject({ params }: { params: { id: string } }) {
                     Save Changes
                   </Button>
                 </div>
-              </CardContent>
-            </Card>
+         
           </TabsContent>
 
           <TabsContent value="history">
