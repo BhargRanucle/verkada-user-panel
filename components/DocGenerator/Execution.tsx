@@ -124,6 +124,7 @@ export default function Execution() {
               Execution Section
             </h4>
             <div className="border-t-[1px] border-[black]"></div> */}
+            <div className="border-t-[1px] border-[#aeaeae]"></div>
 
             <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4 space-y-3 mt-4">
               <h3 className="text-base font-semibold text-slate-800 dark:text-slate-200">

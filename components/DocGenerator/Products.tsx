@@ -10,7 +10,6 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-
 export default function Products() {
   const initialValues = {
     projectName: "Video Surveillance",
@@ -130,6 +129,7 @@ export default function Products() {
               Products
             </h4>
             <div className="border-t-[1px] border-[black]"></div> */}
+            <div className="border-t-[1px] border-[#aeaeae]"></div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
               <div className="space-y-1.5">

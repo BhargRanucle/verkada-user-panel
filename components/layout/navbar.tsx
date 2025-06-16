@@ -29,8 +29,9 @@ export function Navbar() {
       </div>
 
       {/* Navigation */}
-      <div className="hidden md:flex items-center space-x-1">
-        <Link
+      {/* <div className="hidden md:flex items-center space-x-1"> */}
+      <div className="flex  gap-2 items-center max-w-full md:space-x-1 md:overflow-visible px-1">
+      <Link
           href="/"
           className={cn(
             "px-3 py-1.5 text-xs font-medium rounded transition-all duration-200 angular-border-small",
@@ -39,7 +40,7 @@ export function Navbar() {
         >
           <div className="flex items-center gap-1.5">
             <LayoutDashboard className="h-3 w-3" />
-            <span>Dashboard</span>
+            <span className="hidden md:inline">Dashboard</span>
           </div>
         </Link>
         <Link
@@ -53,7 +54,7 @@ export function Navbar() {
         >
           <div className="flex items-center gap-1.5">
             <FileText className="h-3 w-3" />
-            <span>Manage Projects</span>
+            <span className="hidden md:inline">Manage Projects</span>
           </div>
         </Link>
         <Button
@@ -62,7 +63,8 @@ export function Navbar() {
           asChild
         >
           <Link href="/create-project">
-            <Plus className="mr-1 h-3 w-3" /> Create
+            <Plus className="mr-1 h-3 w-3 " />
+            <span className="hidden md:inline"> Create</span>
           </Link>
         </Button>
       </div>
