@@ -1,5 +1,5 @@
 "use client";
-
+// import from '../../styles\globals.css';
 import { MainLayout } from "@/components/layout/main-layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -97,8 +97,8 @@ export default function ViewProject({ params }: { params: { id: string } }) {
                 </CardHeader>
                 <CardContent>
                   <dl className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-2 text-xs">
-                    <div>
-                      <dt className="font-medium text-gray-500">
+                    <div className="view-container">
+                      <dt className="font-medium text-gray-500" >
                         Project Name
                       </dt>
                       <dd>{projectData.projectName}</dd>

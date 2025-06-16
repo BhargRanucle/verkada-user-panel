@@ -162,7 +162,7 @@ const DocGenerator: React.FC = () => {
   return (
     <div className="container mx-auto py-2">
       <div className="mb-4 shadow-sm">
-        <CardContent className="p-3 border-none bg-transparent">
+        {/* <CardContent className="p-3 border-none bg-transparent"> */}
         <Accordion
   type="multiple"
   className="w-full space-y-4"
@@ -172,7 +172,7 @@ const DocGenerator: React.FC = () => {
             {[
               {
                 value: "general",
-                title: "General Information",
+                title: "",
                 content: (
                   <GeneralSection
                     projectName={projectName}
@@ -195,8 +195,8 @@ const DocGenerator: React.FC = () => {
                 ),
               },
               {
-                value: "products",
-                title: "Products",
+                value: "",
+                title: "",
                 content: (
                   <Part2Section
                     licenseTerms={licenseTerms}
@@ -239,8 +239,8 @@ const DocGenerator: React.FC = () => {
                 ),
               },
               {
-                value: "execution",
-                title: "Execution Section",
+                value: "",
+                title: "",
                 content: (
                   <ExecutionSection
                     executionData={executionData}
@@ -275,7 +275,7 @@ const DocGenerator: React.FC = () => {
               <Download className="w-4 h-4" /> Download DOCX
             </Button> */}
           </div>
-        </CardContent>
+        {/* </CardContent> */}
       </div>
     </div>
   );

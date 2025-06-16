@@ -92,3 +92,9 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+.view-container{
+  background-color: rgb(233 223 244);
+  padding: 2.5px 10px;
+  border-radius: 10px;
+}
