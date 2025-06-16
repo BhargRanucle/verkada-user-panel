@@ -20,7 +20,7 @@ export function Navbar() {
   const pathname = usePathname()
 
   return (
-    <header className="h-14 stormtrooper-glass border-b border-white/20 flex items-center justify-between px-4 shadow-sm">
+    <header className="h-14 stormtrooper-glass border-b border-[#e5e5e5] flex items-center justify-between px-4 shadow-sm">
       {/* Logo */}
       <div className="flex items-center gap-2">
         <div className="w-15 h-15 stormtrooper-glass angular-border-small flex">
