@@ -8,12 +8,12 @@ import { ChevronRight } from "lucide-react"
 import Link from "next/link"
 
 const specifications = [
-  { id: 1, name: "28 10 00 Access Control 24.4", thumbnail: "/placeholder.svg?height=120&width=160" },
-  { id: 2, name: "28 15 23 Intercom Entry Systems 25.1", thumbnail: "/placeholder.svg?height=120&width=160" },
-  { id: 3, name: "28 17 11 Visitor Management Systems 25.1", thumbnail: "/placeholder.svg?height=120&width=160" },
-  { id: 4, name: "28 20 00 Video Surveillance, Gateways, Connector 25.1", thumbnail: "/placeholder.svg?height=120&width=160" },
-  { id: 5, name: "28 30 00 Environmental Sensors 25.1", thumbnail: "/placeholder.svg?height=120&width=160" },
-  { id: 6, name: "28 31 00 Intrusion Detection 25.1", thumbnail: "/placeholder.svg?height=120&width=160" },
+  { id: 1, name: "Video Surveillance by Verkada", thumbnail: "/placeholder.svg?height=120&width=160" },
+  { id: 2, name: "Access Control by Verkada", thumbnail: "/placeholder.svg?height=120&width=160" },
+  { id: 3, name: "Intercom Entry by Verkada", thumbnail: "/placeholder.svg?height=120&width=160" },
+  { id: 4, name: "Video Surveillance 2 by Verkada", thumbnail: "/placeholder.svg?height=120&width=160" },
+  { id: 5, name: "Intrusion Detection by Verkada", thumbnail: "/placeholder.svg?height=120&width=160" },
+  { id: 6, name: "Access Control Badges", thumbnail: "/placeholder.svg?height=120&width=160" },
 ]
 
 export default function CreateProject() {
