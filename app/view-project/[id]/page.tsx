@@ -1,11 +1,11 @@
-// "use client";
+"use client";
 // import from '../../styles\globals.css';
 import { MainLayout } from "@/components/layout/main-layout";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { format } from "date-fns";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ChevronLeft, Download, Pencil } from "lucide-react";
+import { ChevronDown, ChevronLeft, Download, Pencil } from "lucide-react";
 import Link from "next/link";
 import {
   Table,
@@ -18,8 +18,14 @@ import {
 import "react-quill-new/dist/quill.core.css";
 import "react-quill-new/dist/quill.bubble.css";
 import "react-quill-new/dist/quill.snow.css";
+import { useState } from "react";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
-// Sample history data
 const historyData = [
   { id: 1, version: "4", date: "2023-08-15", author: "John Doe" },
   { id: 2, version: "3", date: "2023-07-22", author: "Jane Smith" },
@@ -27,7 +33,6 @@ const historyData = [
   { id: 4, version: "1", date: "2023-05-05", author: "John Doe" },
 ];
 
-// Sample project data
 const projectData = {
   id: 1,
   specName: "Standard Specification",
@@ -140,12 +145,14 @@ const initialValues = {
   ],
 };
 
-export default async function ViewProject({
-  params,
-}: {
-  params: { id: string };
-}) {
-  const { id } = await params;
+export default function ViewProject({ params }: { params: { id: string } }) {
+  const [openItems, setOpenItems] = useState([
+    "general",
+    "products",
+    "execution",
+  ]) as any;
+  // const { id } = await params;
+
   return (
     <MainLayout>
       <div className="space-y-4">
@@ -168,7 +175,7 @@ export default async function ViewProject({
             className="h-7 text-xs angular-border-small"
             asChild
           >
-            <Link href={`/edit-project/${id}`}>
+            <Link href={`/edit-project/${params?.id}`}>
               <Pencil className="mr-1 h-3 w-3" /> Edit
             </Link>
           </Button>
@@ -191,233 +198,387 @@ export default async function ViewProject({
           </TabsList>
 
           <TabsContent value="details">
-            <div className="grid gap-4 view-content">
-              {/* <Card className="stormtrooper-glass angular-border">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold">
-                    General Information
-                  </CardTitle>
-                  <hr />
-                </CardHeader>
-                <CardContent>
-                  <dl className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-2 text-xs">
-                    <div className="view-container">
-                      <dt className="font-medium text-gray-500" >
-                        Project Name
-                      </dt>
-                      <dd>{projectData.projectName}</dd>
-                    </div>
-                    <div>
-                      <dt className="font-medium text-gray-500">
-                        Consultant Name
-                      </dt>
-                      <dd>John Doe</dd>
-                    </div>
-                    <div>
-                      <dt className="font-medium text-gray-500">Description</dt>
-                      <dd>Issuance Description</dd>
-                    </div>
-                    <div>
-                      <dt className="font-medium text-gray-500">
-                        Issuance Date
-                      </dt>
-                      <dd>{projectData.startDate}</dd>
-                    </div>
-                  </dl>
+            <Accordion
+              type="multiple"
+              className="w-full space-y-4 view-content"
+              value={openItems}
+              onValueChange={setOpenItems}
+            >
+              {[
+                {
+                  value: "general",
+                  title: "General Section",
+                  content: (
+                    <>
+                      <div>
+                        <div className="border-t-[1px] border-[#aeaeae]"></div>
+                        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+                          <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4">
+                            <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                              Project Name
+                            </h3>
+                            <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                              {initialValues.projectName}
+                            </p>
+                          </div>
+                          <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4">
+                            <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                              Consultant Name
+                            </h3>
+                            <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                              {initialValues.consultantName}
+                            </p>
+                          </div>
+                          <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4">
+                            <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                              Issuance Description
+                            </h3>
+                            <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                              {initialValues.issuanceDescription}
+                            </p>
+                          </div>
+                          <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4">
+                            <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                              Issuance Date
+                            </h3>
+                            <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                              {format(initialValues.issuanceDate, "PPP")}
+                            </p>
+                          </div>
+                        </div>
 
-                  <br />
-                  <CardTitle className="text-sm font-semibold">
-                    Abbreviations
-                  </CardTitle>
-                  <hr />
+                        <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4 mt-4">
+                          <h3 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3">
+                            Abbreviations
+                          </h3>
+                          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                            {initialValues.abbreviations
+                              .filter((abbreviation) => abbreviation.checked)
+                              .map((abbreviation, index) => (
+                                <div
+                                  key={index}
+                                  className="flex items-center space-x-2 p-2 bg-white dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-600"
+                                >
+                                  <span className="text-xs">
+                                    <span className="font-medium">
+                                      {abbreviation.name}
+                                    </span>{" "}
+                                    – {abbreviation.description}
+                                  </span>
+                                </div>
+                              ))}
+                          </div>
+                        </div>
 
-                  <dl className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-2 text-xs text-left">
-                    <div>
-                      <dt className="font-medium text-gray-500">
-                        ACS – Access Control System
-                      </dt>
-                    </div>
-                    <div>
-                      <dt className="font-medium text-gray-500">
-                        CCD – Charge Coupled Device
-                      </dt>
-                    </div>
-                    <div>
-                      <dt className="font-medium text-gray-500">
-                        CCTV – Closed Circuit Television
-                      </dt>
-                    </div>
-                    <div>
-                      <dt className="font-medium text-gray-500">
-                        DHCP – Dynamic Host Configuration Protocol
-                      </dt>
-                    </div>
-                    <div>
-                      <dt className="font-medium text-gray-500">
-                        DNS – Domain Name System
-                      </dt>
-                    </div>
-                    <div>
-                      <dt className="font-medium text-gray-500">
-                        DPDT – Double pole, double throw
-                      </dt>
-                    </div>
-                    <div>
-                      <dt className="font-medium text-gray-500">
-                        IP – Internet Protocol
-                      </dt>
-                    </div>
-                    <div>
-                      <dt className="font-medium text-gray-500">
-                        LPR – License Plate Recognition
-                      </dt>
-                    </div>
-                    <div>
-                      <dt className="font-medium text-gray-500">
-                        NVR – Network Video Recorder
-                      </dt>
-                    </div>
-                    <div>
-                      <dt className="font-medium text-gray-500">
-                        PoE – Power Over Ethernet
-                      </dt>
-                    </div>
-                    <div>
-                      <dt className="font-medium text-gray-500">
-                        SPDT – Single pole, double throw
-                      </dt>
-                    </div>
-                    <div>
-                      <dt className="font-medium text-gray-500">
-                        SSL – Secure Sockets Layer
-                      </dt>
-                    </div>
-                  </dl>
+                        <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4 mt-4">
+                          <h3 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3">
+                            Definitions
+                          </h3>
+                          <div className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 rounded p-3">
+                            <p className="text-sm text-slate-600 dark:text-slate-400 italic">
+                              {initialValues.definitions ||
+                                "No definitions provided."}
+                            </p>
+                          </div>
+                        </div>
 
-                  <br />
-                  <CardTitle className="text-sm font-semibold">
-                    Definitions
-                  </CardTitle>
-                  <hr />
-                  <dl className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-2 text-xs">
-                    <div className="md:col-span-2">No Definitions provided</div>
-                  </dl>
+                        <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4 mt-4">
+                          <h3 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3">
+                            Submittals
+                          </h3>
+                          <div className="ql-container ql-snow bg-white border border-slate-200 dark:border-slate-600 rounded">
+                            <div
+                              className="ql-editor"
+                              dangerouslySetInnerHTML={{
+                                __html: initialValues?.submittals || "",
+                              }}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  ),
+                },
+                {
+                  value: "products",
+                  title: "Products",
+                  content: (
+                    <div className="">
+                      <div className="border-t-[1px] border-[#aeaeae]"></div>
 
-                  <br />
-                  <CardTitle className="text-sm font-semibold">
-                    Submittals
-                  </CardTitle>
-                  <hr />
-                  <dl className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-2 text-xs">
-                    <div className="md:col-span-2">No Submittals provided</div>
-                  </dl>
-                </CardContent>
-              </Card>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4">
+                          <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                            Sales Rep Contact
+                          </h3>
+                          <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                            {initialValues.sales_rep_contact}
+                          </p>
+                        </div>
+                        <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4">
+                          <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                            Licence Term
+                          </h3>
+                          <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                            {initialValues.license_term} Licence Term
+                          </p>
+                        </div>
+                      </div>
 
-              <Card className="stormtrooper-glass angular-border">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold">
-                    Products
-                  </CardTitle>
-                  <hr />
-                </CardHeader>
-                <CardContent>
-                  <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-2 text-xs">
-                    <div className="md:col-span-2">
-                      <dt className="font-medium text-gray-500">
-                        Product List
-                      </dt>
-                      <dd>{projectData.products}</dd>
+                      <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4 mt-4">
+                        <h3 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3">
+                          System Monitoring License
+                        </h3>
+                        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2">
+                          {initialValues.system_monitoring
+                            .filter((data) => data.checked)
+                            .map((data, index) => (
+                              <div
+                                key={index}
+                                className="flex items-center space-x-2 p-2 bg-white dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-600"
+                              >
+                                <span className="text-xs">
+                                  <span className="font-medium">
+                                    {data.name}
+                                  </span>
+                                </span>
+                              </div>
+                            ))}
+                        </div>
+                      </div>
+
+                      <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4 mt-4">
+                        <h3 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3">
+                          Indoor Dome Products
+                        </h3>
+                        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2">
+                          {initialValues.indoor_dome_products
+                            .filter((data) => data.checked)
+                            .map((data, index) => (
+                              <div
+                                key={index}
+                                className="flex items-center space-x-2 p-2 bg-white dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-600"
+                              >
+                                <span className="text-xs">
+                                  <span className="font-medium">
+                                    {data.name}
+                                  </span>
+                                </span>
+                              </div>
+                            ))}
+                        </div>
+                      </div>
+
+                      <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4 mt-4">
+                        <h3 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3">
+                          Outdoor Dome Products
+                        </h3>
+                        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2">
+                          {initialValues.outdoor_dome_products
+                            .filter((data) => data.checked)
+                            .map((data, index) => (
+                              <div
+                                key={index}
+                                className="flex items-center space-x-2 p-2 bg-white dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-600"
+                              >
+                                <span className="text-xs">
+                                  <span className="font-medium">
+                                    {data.name}
+                                  </span>
+                                </span>
+                              </div>
+                            ))}
+                        </div>
+                      </div>
+
+                      <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4 mt-4">
+                        <h3 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3">
+                          Fips-Validated Cameras
+                        </h3>
+                        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-2">
+                          {initialValues.fips_validated_cameras
+                            .filter((data) => data.checked)
+                            .map((data, index) => (
+                              <div
+                                key={index}
+                                className="flex items-center space-x-2 p-2 bg-white dark:bg-slate-800 rounded border border-slate-200 dark:border-slate-600"
+                              >
+                                <span className="text-xs">
+                                  <span className="font-medium">
+                                    {data.name}
+                                  </span>
+                                </span>
+                              </div>
+                            ))}
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <dt className="font-medium text-gray-500">Quantity</dt>
-                      <dd>{projectData.quantity}</dd>
+                  ),
+                },
+                {
+                  value: "execution",
+                  title: "Execution",
+                  content: (
+                    <div className="">
+                      <div className="border-t-[1px] border-[#aeaeae]"></div>
+
+                      <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4 mt-4">
+                        <h3 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3">
+                          Installers
+                        </h3>
+                        <div className="ql-container ql-snow bg-white border border-slate-200 dark:border-slate-600 rounded">
+                          <div
+                            className="ql-editor"
+                            dangerouslySetInnerHTML={{
+                              __html: initialValues?.installers || "",
+                            }}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4 mt-4">
+                        <h3 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3">
+                          Examination
+                        </h3>
+                        <div className="ql-container ql-snow bg-white border border-slate-200 dark:border-slate-600 rounded">
+                          <div
+                            className="ql-editor"
+                            dangerouslySetInnerHTML={{
+                              __html: initialValues?.examination || "",
+                            }}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4 mt-4">
+                        <h3 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3">
+                          Preparation
+                        </h3>
+                        <div className="ql-container ql-snow bg-white border border-slate-200 dark:border-slate-600 rounded">
+                          <div
+                            className="ql-editor"
+                            dangerouslySetInnerHTML={{
+                              __html: initialValues?.preparation || "",
+                            }}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4 mt-4">
+                        <h3 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3">
+                          Installation
+                        </h3>
+                        <div className="ql-container ql-snow bg-white border border-slate-200 dark:border-slate-600 rounded">
+                          <div
+                            className="ql-editor"
+                            dangerouslySetInnerHTML={{
+                              __html: initialValues?.installation || "",
+                            }}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4 mt-4">
+                        <h3 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3">
+                          Labeling
+                        </h3>
+                        <div className="ql-container ql-snow bg-white border border-slate-200 dark:border-slate-600 rounded">
+                          <div
+                            className="ql-editor"
+                            dangerouslySetInnerHTML={{
+                              __html: initialValues?.labeling || "",
+                            }}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4 mt-4">
+                        <h3 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3">
+                          Programming
+                        </h3>
+                        <div className="ql-container ql-snow bg-white border border-slate-200 dark:border-slate-600 rounded">
+                          <div
+                            className="ql-editor"
+                            dangerouslySetInnerHTML={{
+                              __html: initialValues?.programming || "",
+                            }}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4 mt-4">
+                        <h3 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3">
+                          Acceptance Testing
+                        </h3>
+                        <div className="ql-container ql-snow bg-white border border-slate-200 dark:border-slate-600 rounded">
+                          <div
+                            className="ql-editor"
+                            dangerouslySetInnerHTML={{
+                              __html: initialValues?.acceptance_testing || "",
+                            }}
+                          />
+                        </div>
+                      </div>
+
+                      <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4 mt-4">
+                        <h3 className="text-base font-semibold text-slate-800 dark:text-slate-200 mb-3">
+                          Owner Personnel Training
+                        </h3>
+                        <div className="ql-container ql-snow bg-white border border-slate-200 dark:border-slate-600 rounded">
+                          <div
+                            className="ql-editor"
+                            dangerouslySetInnerHTML={{
+                              __html:
+                                initialValues?.owner_personnel_training || "",
+                            }}
+                          />
+                        </div>
+                      </div>
                     </div>
-                    <div>
-                      <dt className="font-medium text-gray-500">Price</dt>
-                      <dd>${projectData.price.toLocaleString()}</dd>
-                    </div>
-                  </dl>
-                </CardContent>
-              </Card>
+                  ),
+                },
+              ].map((section) => (
+                <div
+                  key={section.value}
+                  className="bg-white border rounded-[5px] p-4"
+                >
+                  <AccordionItem value={section.value} className="border-0">
+                    <AccordionTrigger className="text-lg font-bold font-medium py-2">
+                      {section.title}
+                      <ChevronDown className="h-4 w-4 transition-transform duration-300 group-data-[state=open]:rotate-180" />
+                    </AccordionTrigger>
+                    <AccordionContent className="pt-2 pb-1 space-y-3">
+                      {section.content}
+                    </AccordionContent>
+                  </AccordionItem>
+                </div>
+              ))}
+            </Accordion>
 
-              <Card className="stormtrooper-glass angular-border">
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-sm font-semibold">
-                    Execution
-                  </CardTitle>
-                  <hr />
-                </CardHeader>
-                <CardContent>
-              
+            <div className="mt-6 flex justify-end">
+              <Button
+                size="sm"
+                className="h-7 text-xs angular-border-small"
+                asChild
+              >
+                <Link href={`#`}>
+                  <Download className="mr-1 h-3 w-3" /> DOCX
+                </Link>
+              </Button>
 
-                  <CardTitle className="text-sm font-semibold">
-                  Installers
-                  </CardTitle>
-                  <hr />
-                  <dl className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-2 text-xs">
-                    <div className="md:col-span-2">No Installers provided</div>
-                  </dl>
-
-                  <br />
-                  <CardTitle className="text-sm font-semibold">
-                    Examinations
-                  </CardTitle>
-                  <hr />
-                  <dl className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-2 text-xs">
-                    <div className="md:col-span-2">No Examinations provided</div>
-                  </dl>
-                  <br />
-                  <CardTitle className="text-sm font-semibold">
-                    Preparations
-                  </CardTitle>
-                  <hr />
-                  <dl className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-2 text-xs">
-                    <div className="md:col-span-2">No Preparations provided</div>
-                  </dl>
-                  
-                  <br />
-                  <CardTitle className="text-sm font-semibold">
-                    Installation
-                  </CardTitle>
-                  <hr />
-                  <dl className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-2 text-xs">
-                    <div className="md:col-span-2">No Installation provided</div>
-                  </dl><br />
-                  <CardTitle className="text-sm font-semibold">
-                    Labelling
-                  </CardTitle>
-                  <hr />
-                  <dl className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-2 text-xs">
-                    <div className="md:col-span-2">No Labelling provided</div>
-                  </dl><br />
-                  <CardTitle className="text-sm font-semibold">
-                    Programming
-                  </CardTitle>
-                  <hr />
-                  <dl className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-2 text-xs">
-                    <div className="md:col-span-2">No Programming provided</div>
-                  </dl><br />
-                  <CardTitle className="text-sm font-semibold">
-                    Acceptance
-                  </CardTitle>
-                  <hr />
-                  <dl className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-2 text-xs">
-                    <div className="md:col-span-2">No Acceptance provided</div>
-                  </dl><br />
-                  <CardTitle className="text-sm font-semibold">
-                    Owner Personnel
-                  </CardTitle>
-                  <hr />
-                  <dl className="grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-2 text-xs">
-                    <div className="md:col-span-2">No Owner Personnel provided</div>
-                  </dl>
-                </CardContent>
-              </Card> */}
-
+              <Button
+                size="sm"
+                className="h-7 text-xs angular-border-small ms-3"
+                asChild
+              >
+                <Link href={`#`}>
+                  <Download className="mr-1 h-3 w-3" /> PDF
+                </Link>
+              </Button>
+            </div>
+            {/* <div className="grid gap-4 view-content">
               <Card className="bg-white dark:bg-slate-800 border-slate-200 dark:border-slate-700 shadow-xl">
                 <CardContent className="pt-0">
-                  {/* Basic Info Grid */}
                   <div>
                     <h4 className="my-1 mt-4 text-black text-[20px] font-semibold">
                       General Information
@@ -735,22 +896,6 @@ export default async function ViewProject({
                   </div>
 
                   <div className="mt-6 flex justify-end">
-                    {/* <Button
-                    className="bg-black hover:bg-gray-800 text-white transition-all duration-300 hover:scale-105 hover:shadow-lg group/btn"
-                    size="sm"
-                  >
-                    <Download className="h-3 w-3 group-hover/btn:animate-bounce" />
-                    DOCX
-                  </Button>
-
-                  <Button
-                    className="bg-black ms-2 hover:bg-gray-800 text-white transition-all duration-300 hover:scale-105 hover:shadow-lg group/btn"
-                    size="sm"
-                  >
-                    <Download className="h-3 w-3 group-hover/btn:animate-bounce" />
-                    PDF
-                  </Button> */}
-
                     <Button
                       size="sm"
                       className="h-7 text-xs angular-border-small"
@@ -773,16 +918,12 @@ export default async function ViewProject({
                   </div>
                 </CardContent>
               </Card>
-            </div>
+            </div> */}
           </TabsContent>
 
           <TabsContent value="history">
             <Card className="stormtrooper-glass angular-border">
-              <CardHeader className="pb-2">
-                {/* <CardTitle className="text-sm font-semibold">
-                  Project History
-                </CardTitle> */}
-              </CardHeader>
+              <CardHeader className="pb-2"></CardHeader>
               <CardContent>
                 <div className="rounded-md border angular-border-small overflow-hidden">
                   <Table>
