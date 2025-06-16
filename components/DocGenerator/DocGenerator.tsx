@@ -10,12 +10,17 @@ import { Separator } from "@/components/ui/separator";
 import { toast } from "@/components/ui/sonner";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import axios from "axios";
+import { ChevronDown } from "lucide-react";
+
 import {
-    Accordion,
-    AccordionContent,
-    AccordionItem,
-    AccordionTrigger,
-  } from "@/components/ui/accordion";
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import General from "./General";
+import Execution from "./Execution";
+import Products from "./Products";
 
 const DocGenerator: React.FC = () => {
   const [projectName, setProjectName] = useState("");
@@ -64,9 +69,8 @@ const DocGenerator: React.FC = () => {
   const [panTiltZoomSeriesProducts, setPanTiltZoomSeriesProducts] = useState<
     Record<string, boolean>
   >({});
-  const [fipsValidatedSeriesProducts, setFipsValidatedSeriesProducts] = useState<
-    Record<string, boolean>
-  >({});
+  const [fipsValidatedSeriesProducts, setFipsValidatedSeriesProducts] =
+    useState<Record<string, boolean>>({});
 
   const [executionData, setExecutionData] = useState<Record<string, string>>(
     {}
@@ -77,7 +81,7 @@ const DocGenerator: React.FC = () => {
       case "30":
         return "256GB";
       case "60":
-        return "512GB"; 
+        return "512GB";
       case "90":
         return "768GB";
       case "120":
@@ -125,8 +129,12 @@ const DocGenerator: React.FC = () => {
         bullet_series_products: JSON.stringify(bulletSeriesProducts),
         fisheye_series_products: JSON.stringify(fisheyeSeriesProducts),
         multisensor_series_products: JSON.stringify(multiSensorSeriesProducts),
-        pan_tilt_zoom_series_products: JSON.stringify(panTiltZoomSeriesProducts),
-        fips_validated_series_products: JSON.stringify(fipsValidatedSeriesProducts),
+        pan_tilt_zoom_series_products: JSON.stringify(
+          panTiltZoomSeriesProducts
+        ),
+        fips_validated_series_products: JSON.stringify(
+          fipsValidatedSeriesProducts
+        ),
       };
 
       const response = await axios.post(
@@ -157,125 +165,117 @@ const DocGenerator: React.FC = () => {
       setIsDownloading(false);
     }
   };
-  const [openItems, setOpenItems] = useState<string[]>(["general", "products", "execution"]);
+  const [openItems, setOpenItems] = useState<string[]>([
+    "general",
+    "products",
+    "execution",
+  ]);
 
   return (
     <div className="container mx-auto py-2">
       <div className="mb-4 shadow-sm">
-        <CardContent className="p-3 border-none bg-transparent">
+        {/* <CardContent className="p-3 border-none bg-transparent"> */}
         <Accordion
-  type="multiple"
-  className="w-full space-y-4"
-  value={openItems}
-  onValueChange={setOpenItems}
->
-            {[
-              {
-                value: "general",
-                title: "General Information",
-                content: (
-                  <GeneralSection
-                    projectName={projectName}
-                    setProjectName={setProjectName}
-                    consultantName={consultantName}
-                    setConsultantName={setConsultantName}
-                    abbreviations={abbreviations}
-                    setAbbreviations={setAbbreviations}
-                    submittals={submittals}
-                    setSubmittals={setSubmittals}
-                    quillSubmittals={quillSubmittals}
-                    setQuillSubmittals={setQuillSubmittals}
-                    definitionsQuill={definitionsQuill}
-                    setdefinitionsQuill={setdefinitionsQuill}
-                    issuanceDescription={issuanceDescription}
-                    setIssuanceDescription={setIssuanceDescription}
-                    issuanceDate={issuanceDate}
-                    setIssuanceDate={setIssuanceDate}
-                  />
-                ),
-              },
-              {
-                value: "products",
-                title: "Products",
-                content: (
-                  <Part2Section
-                    licenseTerms={licenseTerms}
-                    setLicenseTerms={setLicenseTerms}
-                    systemMonitoring={systemMonitoring}
-                    setSystemMonitoring={setSystemMonitoring}
-                    thirdPartyCamera={thirdPartyCamera}
-                    setThirdPartyCamera={setThirdPartyCamera}
-                    viewingStation={viewingStation}
-                    setViewingStation={setViewingStation}
-                    poeInjectors={poeInjectors}
-                    setPoeInjectors={setPoeInjectors}
-                    accessories={accessories}
-                    setAccessories={setAccessories}
-                    cellularWifi={cellularWifi}
-                    setCellularWifi={setCellularWifi}
-                    selectedDaysPlans={selectedDaysPlans}
-                    setSelectedDaysPlans={setSelectedDaysPlans}
-                    indoorDomeProducts={indoorDomeProducts}
-                    setIndoorDomeProducts={setIndoorDomeProducts}
-                    outdoorDomeProducts={outdoorDomeProducts}
-                    setOutdoorDomeProducts={setOutdoorDomeProducts}
-                    miniSeriesProducts={miniSeriesProducts}
-                    setMiniSeriesProducts={setMiniSeriesProducts}
-                    bulletSeriesProducts={bulletSeriesProducts}
-                    setBulletSeriesProducts={setBulletSeriesProducts}
-                    fisheyeSeriesProducts={fisheyeSeriesProducts}
-                    setFisheyeSeriesProducts={setFisheyeSeriesProducts}
-                    multiSensorSeriesProducts={multiSensorSeriesProducts}
-                    setMultiSensorSeriesProducts={setMultiSensorSeriesProducts}
-                    panTiltZoomSeriesProducts={panTiltZoomSeriesProducts}
-                    setPanTiltZoomSeriesProducts={setPanTiltZoomSeriesProducts}
-                    fipsValidatedSeriesProducts={fipsValidatedSeriesProducts}
-                    setFipsValidatedSeriesProducts={setFipsValidatedSeriesProducts}
-                    days={days}
-                    setDays={setDays}
-                    salesRep={salesRep}
-                    setSalesRep={setSalesRep}
-                  />
-                ),
-              },
-              {
-                value: "execution",
-                title: "Execution Section",
-                content: (
-                  <ExecutionSection
-                    executionData={executionData}
-                    setExecutionData={setExecutionData}
-                  />
-                ),
-              },
-            ].map((section) => (
-              <div
-                key={section.value}
-                className="bg-white border rounded-[5px] p-4"
-              >
-                <AccordionItem value={section.value} className="border-0">
-                  <AccordionTrigger className="text-sm font-medium py-2">
-                    {section.title}
-                  </AccordionTrigger>
-                  <AccordionContent className="pt-2 pb-1 space-y-3">
-                    {section.content}
-                  </AccordionContent>
-                </AccordionItem>
-              </div>
-            ))}
-          </Accordion>
-  
-          <div className="flex justify-end mt-4">
-            {/* <Button
-              onClick={downloadDocument}
-              type="button"
-              disabled={isDownloading}
-              className="h-8 text-xs black-glass text-white hover:bg-gray-900 angular-border-small gap-2"
+          type="multiple"
+          className="w-full space-y-4"
+          value={openItems}
+          onValueChange={setOpenItems}
+        >
+          {[
+            {
+              value: "general",
+              title: "General Section",
+              content: (
+                <General
+                // projectName={projectName}
+                // setProjectName={setProjectName}
+                // consultantName={consultantName}
+                // setConsultantName={setConsultantName}
+                // abbreviations={abbreviations}
+                // setAbbreviations={setAbbreviations}
+                // submittals={submittals}
+                // setSubmittals={setSubmittals}
+                // quillSubmittals={quillSubmittals}
+                // setQuillSubmittals={setQuillSubmittals}
+                // definitionsQuill={definitionsQuill}
+                // setdefinitionsQuill={setdefinitionsQuill}
+                // issuanceDescription={issuanceDescription}
+                // setIssuanceDescription={setIssuanceDescription}
+                // issuanceDate={issuanceDate}
+                // setIssuanceDate={setIssuanceDate}
+                />
+              ),
+            },
+            {
+              value: "products",
+              title: "Products",
+              content: (
+                <Products
+                // licenseTerms={licenseTerms}
+                // setLicenseTerms={setLicenseTerms}
+                // systemMonitoring={systemMonitoring}
+                // setSystemMonitoring={setSystemMonitoring}
+                // thirdPartyCamera={thirdPartyCamera}
+                // setThirdPartyCamera={setThirdPartyCamera}
+                // viewingStation={viewingStation}
+                // setViewingStation={setViewingStation}
+                // poeInjectors={poeInjectors}
+                // setPoeInjectors={setPoeInjectors}
+                // accessories={accessories}
+                // setAccessories={setAccessories}
+                // cellularWifi={cellularWifi}
+                // setCellularWifi={setCellularWifi}
+                // selectedDaysPlans={selectedDaysPlans}
+                // setSelectedDaysPlans={setSelectedDaysPlans}
+                // indoorDomeProducts={indoorDomeProducts}
+                // setIndoorDomeProducts={setIndoorDomeProducts}
+                // outdoorDomeProducts={outdoorDomeProducts}
+                // setOutdoorDomeProducts={setOutdoorDomeProducts}
+                // miniSeriesProducts={miniSeriesProducts}
+                // setMiniSeriesProducts={setMiniSeriesProducts}
+                // bulletSeriesProducts={bulletSeriesProducts}
+                // setBulletSeriesProducts={setBulletSeriesProducts}
+                // fisheyeSeriesProducts={fisheyeSeriesProducts}
+                // setFisheyeSeriesProducts={setFisheyeSeriesProducts}
+                // multiSensorSeriesProducts={multiSensorSeriesProducts}
+                // setMultiSensorSeriesProducts={setMultiSensorSeriesProducts}
+                // panTiltZoomSeriesProducts={panTiltZoomSeriesProducts}
+                // setPanTiltZoomSeriesProducts={setPanTiltZoomSeriesProducts}
+                // fipsValidatedSeriesProducts={fipsValidatedSeriesProducts}
+                // setFipsValidatedSeriesProducts={
+                //   setFipsValidatedSeriesProducts
+                // }
+                // days={days}
+                // setDays={setDays}
+                // salesRep={salesRep}
+                // setSalesRep={setSalesRep}
+                />
+              ),
+            },
+            {
+              value: "execution",
+              title: "Execution",
+              content: <Execution />,
+            },
+          ].map((section) => (
+            <div
+              key={section.value}
+              className="bg-white border rounded-[5px] p-4"
             >
-              <Download className="w-4 h-4" /> Download DOCX
-            </Button> */}
-          </div>
-        </CardContent>
+              <AccordionItem value={section.value} className="border-0">
+                <AccordionTrigger className="text-lg font-bold underline font-medium py-2">
+                  {section.title}
+                  <ChevronDown className="h-4 w-4 transition-transform duration-300 group-data-[state=open]:rotate-180" />
+                </AccordionTrigger>
+                <AccordionContent className="pt-2 pb-1 space-y-3">
+                  {section.content}
+                </AccordionContent>
+              </AccordionItem>
+            </div>
+          ))}
+        </Accordion>
+
+        {/* </CardContent> */}
       </div>
     </div>
   );
