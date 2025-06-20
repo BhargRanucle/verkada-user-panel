@@ -47,25 +47,7 @@ export default function ProjectForm({ params }: { params: { id: string } }) {
             </p>
           </div>
         </div>
-
-        {/* <Card className=""> */}
-          {/* <CardHeader className="pb-2"> */}
-            {/* <CardTitle className="text-sm font-semibold">
-              Project Details:
-            </CardTitle> */}
-          {/* </CardHeader> */}
-          <DocGenerator />
-         
-
-            <div className="flex justify-end mx-4">
-              <Button
-                type="submit"
-                className="h-8 text-xs black-glass text-white hover:bg-gray-900 angular-border-small"
-              >
-                Create Project
-              </Button>
-            </div>
-        {/* </Card> */}
+        <DocGenerator buttonName="Create Project" />
       </div>
     </MainLayout>
   );

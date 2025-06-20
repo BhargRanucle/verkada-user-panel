@@ -47,7 +47,6 @@ export default function EditProject({ params }: { params: { id: string } }) {
             <h1 className="text-2xl font-bold tracking-tight bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
               Edit Project
             </h1>
-            {/* <p className="text-gray-600 text-xs mt-1">Project #{params.id}</p> */}
           </div>
         </div>
 
@@ -68,18 +67,7 @@ export default function EditProject({ params }: { params: { id: string } }) {
           </TabsList>
 
           <TabsContent value="edit">
-           
-                <DocGenerator />
-
-                <div className="flex justify-end mt-4">
-                  <Button
-                    type="submit"
-                    className="h-8 text-xs black-glass text-white hover:bg-gray-900 angular-border-small"
-                  >
-                    Save Changes
-                  </Button>
-                </div>
-         
+                <DocGenerator buttonName="Update Changes" />
           </TabsContent>
 
           <TabsContent value="history">

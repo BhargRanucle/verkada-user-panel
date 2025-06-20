@@ -15,6 +15,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { z } from "zod";
+import { useRouter } from "next/navigation";
 
 const resetPasswordSchema = z
   .object({
@@ -39,6 +40,7 @@ type ResetPasswordFormData = z.infer<typeof resetPasswordSchema>;
 
 export default function ResetPasswordPage() {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const {
     register,
@@ -50,9 +52,8 @@ export default function ResetPasswordPage() {
 
   const onSubmit = async (data: ResetPasswordFormData) => {
     setIsLoading(true);
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    // console.log("Reset password data:", data);
+    router.push("/login")
     setIsLoading(false);
   };
 

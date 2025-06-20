@@ -15,6 +15,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { z } from "zod";
+import { useRouter } from "next/navigation";
 
 const verifyOTPSchema = z.object({
   otp: z
@@ -27,6 +28,7 @@ type VerifyOTPFormData = z.infer<typeof verifyOTPSchema>;
 
 export default function VerifyOTPPage() {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const {
     register,
@@ -40,7 +42,8 @@ export default function VerifyOTPPage() {
     setIsLoading(true);
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    console.log("OTP data:", data);
+    // console.log("OTP data:", data);
+    router.push('/login');
     setIsLoading(false);
   };
 
