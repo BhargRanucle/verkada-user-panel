@@ -1,5 +1,4 @@
 import { Label } from "@/components/ui/label";
-// import ReactQuill from "react-quill";
 import "react-datepicker/dist/react-datepicker.css";
 import { FieldArray, Form, Formik } from "formik";
 import {
@@ -117,7 +116,6 @@ export default function Products() {
   return (
     <Formik
       initialValues={initialValues}
-      //   validationSchema={GeneralInformationSchema}
       onSubmit={(values) => {
         console.log(values);
       }}
@@ -125,10 +123,6 @@ export default function Products() {
       {({ values, errors, touched, setFieldValue, handleChange }) => (
         <Form className="space-y-4">
           <div>
-            {/* <h4 className="my-1 mt-7 text-black text-[20px] font-semibold">
-              Products
-            </h4>
-            <div className="border-t-[1px] border-[black]"></div> */}
             <div className="border-t-[1px] border-[#aeaeae]"></div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">

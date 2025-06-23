@@ -62,25 +62,49 @@
 
 @layer components {
   .stormtrooper-glass {
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.95) 0%,
+      rgba(248, 250, 252, 0.9) 100%
+    );
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.3);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1),
+      inset 0 1px 0 rgba(255, 255, 255, 0.8);
   }
 
   .black-glass {
-    background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 100%);
+    background: linear-gradient(
+      135deg,
+      rgba(15, 23, 42, 0.95) 0%,
+      rgba(30, 41, 59, 0.9) 100%
+    );
     backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 
   .angular-border {
-    clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    clip-path: polygon(
+      0 0,
+      calc(100% - 8px) 0,
+      100% 8px,
+      100% 100%,
+      8px 100%,
+      0 calc(100% - 8px)
+    );
   }
 
   .angular-border-small {
-    clip-path: polygon(0 0, calc(100% - 4px) 0, 100% 4px, 100% 100%, 4px 100%, 0 calc(100% - 4px));
+    clip-path: polygon(
+      0 0,
+      calc(100% - 4px) 0,
+      100% 4px,
+      100% 100%,
+      4px 100%,
+      0 calc(100% - 4px)
+    );
   }
 
   .card-hover {
@@ -89,7 +113,8 @@
 
   .first-order-accent {
     background: linear-gradient(135deg, #111827 0%, #000000 100%);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
 }
 
@@ -100,46 +125,46 @@
 .manage-spacification-section .ql-editor {
   height: 350px !important;
 }
-.ql-editor li[data-list=ordered] > .ql-ui:before {
-    content: counter(list-0, upper-alpha) '. ' !important;
+.ql-editor li[data-list="ordered"] > .ql-ui:before {
+  content: counter(list-0, upper-alpha) ". " !important;
 }
 .ql-editor ol li:before {
-    content: counter(list-0, upper-alpha) '. ' !important;
+  content: counter(list-0, upper-alpha) ". " !important;
 }
 
 .ql-editor ol li.ql-indent-1:before {
-  content: counter(list-1, decimal) '. ' !important;
+  content: counter(list-1, decimal) ". " !important;
 }
-.ql-editor li[data-list=ordered].ql-indent-1 > .ql-ui:before {
-    content: counter(list-1, decimal) '. ' !important;
+.ql-editor li[data-list="ordered"].ql-indent-1 > .ql-ui:before {
+  content: counter(list-1, decimal) ". " !important;
 }
 
 .ql-editor ol li.ql-indent-2:before {
-  content: counter(list-2, lower-alpha) '. ' !important;
+  content: counter(list-2, lower-alpha) ". " !important;
 }
-.ql-editor li[data-list=ordered].ql-indent-2 > .ql-ui:before {
-    content: counter(list-2, lower-alpha) '. ' !important;
+.ql-editor li[data-list="ordered"].ql-indent-2 > .ql-ui:before {
+  content: counter(list-2, lower-alpha) ". " !important;
 }
 
 .ql-editor ol li.ql-indent-3:before {
-  content: counter(list-3, lower-roman) '. ' !important;
+  content: counter(list-3, lower-roman) ". " !important;
 }
-.ql-editor li[data-list=ordered].ql-indent-3 > .ql-ui:before {
-    content: counter(list-3, lower-roman) '. ' !important;
+.ql-editor li[data-list="ordered"].ql-indent-3 > .ql-ui:before {
+  content: counter(list-3, lower-roman) ". " !important;
 }
 
 .ql-editor ol li.ql-indent-4:before {
-  content: counter(list-4, upper-alpha) ') ' !important;
+  content: counter(list-4, upper-alpha) ") " !important;
 }
-.ql-editor li[data-list=ordered].ql-indent-4 > .ql-ui:before {
-    content: counter(list-4, upper-alpha) ') ' !important;
+.ql-editor li[data-list="ordered"].ql-indent-4 > .ql-ui:before {
+  content: counter(list-4, upper-alpha) ") " !important;
 }
 
 .ql-editor ol li {
   counter-reset: none !important;
 }
 
-.ql-editor ol li[data-list=bullet]:before {
+.ql-editor ol li[data-list="bullet"]:before {
   content: none !important;
 }
 
@@ -176,7 +201,5 @@
 }
 
 .view-content .ql-editor {
-  /* max-height: 180px !important; */
-  height: unset !important;
+  height: 350px !important;
 }
-

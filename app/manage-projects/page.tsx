@@ -54,44 +54,38 @@ const projects = [
   {
     id: 1,
     specName: "Video Surveillance by Verkada",
-    clientName: "Dan Gadhavi",
-    clientAddress: "123 Business Ave, Suite 100, New York, NY 10001",
-    createdDate: "2023-05-15",
+    createdDate: "2023-05-15 10:00 PM",
+    updatedDate: "2024-05-17 11:00 AM"
   },
   {
     id: 2,
     specName: "Access Control by Verkada",
-    clientName: "Bharg Patel",
-    clientAddress: "456 Innovation Blvd, San Francisco, CA 94107",
-    createdDate: "2023-06-22",
+    createdDate: "2023-06-22 09:00 AM",
+    updatedDate: "2024-05-18 07:00 PM"
   },
   {
     id: 3,
     specName: "Intercom Entry by Verkada",
-    clientName: "Dan Client",
-    clientAddress: "789 Corporate Park, Chicago, IL 60601",
-    createdDate: "2023-07-10",
+    createdDate: "2023-07-10 10:00 PM",
+    updatedDate: "2024-06-20 10:00 AM"
   },
   {
     id: 4,
     specName: "Video Surveillance 2 by Verkada",
-    clientName: "Brian D'souza",
-    clientAddress: "321 Venture St, Austin, TX 78701",
-    createdDate: "2023-08-05",
+    createdDate: "2023-08-05 10:00 PM",
+    updatedDate: "2024-06-08 10:00 PM"
   },
   {
     id: 5,
     specName: "Intrusion Detection by Verkada",
-    clientName: "Startup Solutions",
-    clientAddress: "321 Venture St, Austin, TX 78701",
-    createdDate: "2023-08-05",
+    createdDate: "2023-08-05 10:00 AM",
+    updatedDate: "2024-05-06 10:00 PM"
   },
   {
     id: 6,
     specName: "Access Control Badges",
-    clientName: "TCC",
-    clientAddress: "321 Venture St, Austin, TX 78701",
-    createdDate: "2023-08-05",
+    createdDate: "2023-08-05 10:00 AM",
+    updatedDate: "2024-06-11 10:00 AM"
   },
 ];
 
@@ -100,8 +94,7 @@ export default function ManageProjects() {
 
   const filteredProjects = projects.filter(
     (project) =>
-      project.specName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      project.clientName.toLowerCase().includes(searchTerm.toLowerCase())
+      project.specName.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -158,14 +151,12 @@ export default function ManageProjects() {
                     <TableHead className="text-xs font-medium">
                       Project Name
                     </TableHead>
+                   
                     <TableHead className="text-xs font-medium">
-                      Consultant Name
+                      Created At
                     </TableHead>
-                    <TableHead className="text-xs font-medium hidden md:table-cell">
-                      Address
-                    </TableHead>
-                    <TableHead className="text-xs font-medium">
-                      Created
+                     <TableHead className="text-xs font-medium">
+                      Last Updated At
                     </TableHead>
                     <TableHead className="text-xs font-medium text-center">
                       Actions
@@ -178,19 +169,15 @@ export default function ManageProjects() {
                       <TableCell className="text-xs">
                         {project.specName}
                       </TableCell>
-                      <TableCell className="text-xs">
-                        {project.clientName}
-                      </TableCell>
-                      <TableCell className="text-xs hidden md:table-cell">
-                        <span className="truncate block max-w-[200px]">
-                          {project.clientAddress}
-                        </span>
-                      </TableCell>
+                      
                       <TableCell className="text-xs">
                         {project.createdDate}
                       </TableCell>
+                      <TableCell className="text-xs">
+                        {project.updatedDate}
+                      </TableCell>
                       <TableCell className="text-right">
-                        <div className="flex justify-end gap-1">
+                        <div className="flex justify-center gap-1">
                           <Button
                             variant="outline"
                             size="sm"

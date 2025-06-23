@@ -57,10 +57,10 @@ export function Sidebar() {
         <div className="space-y-1">
           <p className="text-slate-400 text-xs uppercase tracking-wider font-medium px-3 py-1">Navigation</p>
           <Link
-            href="/"
+            href="/dashboard"
             className={cn(
               "flex items-center gap-2 px-3 py-2 text-xs font-medium rounded transition-all duration-200 angular-border-small",
-              pathname === "/"
+              pathname === "/dashboard"
                 ? "stormtrooper-glass text-gray-900 shadow-md"
                 : "text-slate-300 hover:text-white hover:bg-white/10",
             )}
