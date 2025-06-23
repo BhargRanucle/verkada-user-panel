@@ -50,6 +50,38 @@ const projectData = {
 };
 
 const initialValues = {
+  rep: "Eric Talley",
+  first_name: "Richard",
+  last_name: "Brysacz",
+  project_role: "Engineer",
+  company_name: "WSP",
+  email: "rick.brysacz@wsp.com",
+  phone_number: "949-751-5819",
+  project_name: "3 building Civic Center Project",
+  project_description: "3 building Civic Center Project",
+  project_type: "Municipality / Government / Public Utility",
+  project_location: "Visalia, CA",
+  construction_type: "Ground Up",
+  project_stage: "Preconstruction / Bidding / Procurement (Stage 5)",
+  stage_four_completion_date: new Date("2024-11-27"),
+  construction_start_date: new Date("2025-06-10"),
+  construction_completion_date: new Date("2026-12-10"),
+  budget: "12000",
+  intrested_products: [
+    { name: "Cameras", description: "Cameras", checked: true },
+    { name: "Access Control", description: "Access Control", checked: true },
+    { name: "Sensors", description: "Sensors", checked: false },
+    { name: "Alarms", description: "Alarms", checked: true },
+    { name: "Workplace", description: "Workplace", checked: false },
+    { name: "Intercom", description: "Intercom", checked: true },
+  ],
+  end_customer_company: "City of Visalia",
+  end_customer_contact: "none",
+  architect: "Darden Architects",
+  mep_engineer: "WSP",
+  security_consultant: "Rick Brysacz",
+  property_management_company: "Griffin Structures",
+  general_contractor: "none",
   projectName: "Video Surveillance",
   consultantName: "Bhart Dan Gadhvi",
   issuanceDescription: "Issuance Description",
@@ -151,6 +183,7 @@ export default function ViewProject({ params }: { params: { id: string } }) {
     "general",
     "products",
     "execution",
+    "project_detail",
   ]) as any;
 
   return (
@@ -206,21 +239,286 @@ export default function ViewProject({ params }: { params: { id: string } }) {
             >
               {[
                 {
+                  value: "project_detail",
+                  title: "Project Detail",
+                  content: (
+                    <>
+                      <div>
+                        <div className="border-t-[1px] border-[black]"></div>
+                        <div className="dark:bg-slate-700/50 bg-slate-50 mt-4 rounded-lg">
+                          <h3 className="text-base font-semibold text-slate-800 dark:text-slate-200 px-4 py-2">
+                            Lead Information
+                          </h3>
+                          <div className="border-t-[1px] border-[#c2c2c2]"></div>
+                          <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 p-4">
+                            <div className="">
+                              <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                                A&E Rep:
+                              </h3>
+                              <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                                {initialValues.rep}
+                              </p>
+                            </div>
+
+                            <div className="">
+                              <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                                First Name:
+                              </h3>
+                              <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                                {initialValues.first_name}
+                              </p>
+                            </div>
+
+                            <div className="">
+                              <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                                Last Name:
+                              </h3>
+                              <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                                {initialValues.last_name}
+                              </p>
+                            </div>
+
+                            <div className="">
+                              <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                                Title & Role in the Project
+                              </h3>
+                              <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                                {initialValues.project_role}
+                              </p>
+                            </div>
+
+                            <div className="">
+                              <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                                Company
+                              </h3>
+                              <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                                {initialValues.company_name}
+                              </p>
+                            </div>
+
+                            <div className="">
+                              <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                                Email
+                              </h3>
+                              <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                                {initialValues.email}
+                              </p>
+                            </div>
+
+                            <div className="">
+                              <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                                Phone Number
+                              </h3>
+                              <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                                {initialValues.phone_number}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="dark:bg-slate-700/50 bg-slate-50 mt-4 rounded-lg">
+                          <h3 className="text-base font-semibold text-slate-800 dark:text-slate-200 px-4 py-2">
+                            Project Information
+                          </h3>
+                          <div className="border-t-[1px] border-[#c2c2c2]"></div>
+                          <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 p-4">
+                            <div className="">
+                              <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                                Project Name
+                              </h3>
+                              <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                                {initialValues.project_name}
+                              </p>
+                            </div>
+
+                            <div className="">
+                              <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                                Project Description
+                              </h3>
+                              <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                                {initialValues.project_description}
+                              </p>
+                            </div>
+
+                            <div className="">
+                              <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                                Project Type
+                              </h3>
+                              <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                                {initialValues.project_type}
+                              </p>
+                            </div>
+
+                            <div className="">
+                              <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                                Project Location (City, State/province,
+                                Country):
+                              </h3>
+                              <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                                {initialValues.project_location}
+                              </p>
+                            </div>
+
+                            <div className="">
+                              <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                                Construction Type
+                              </h3>
+                              <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                                {initialValues.construction_type}
+                              </p>
+                            </div>
+
+                            <div className="">
+                              <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                                What stage is the project in?:
+                              </h3>
+                              <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                                {initialValues.project_stage}
+                              </p>
+                            </div>
+
+                            <div className="">
+                              <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                                Construction Documents (Stage 4) Completion
+                                Date:
+                              </h3>
+                              <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                                {format(
+                                  initialValues.stage_four_completion_date,
+                                  "PPP"
+                                )}
+                              </p>
+                            </div>
+
+                            <div className="">
+                              <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                                Construction Start Date (target):
+                              </h3>
+                              <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                                {format(
+                                  initialValues.construction_start_date,
+                                  "PPP"
+                                )}
+                              </p>
+                            </div>
+
+                            <div className="">
+                              <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                                Construction Completion Date (target):
+                              </h3>
+                              <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                                {format(
+                                  initialValues.construction_completion_date,
+                                  "PPP"
+                                )}
+                              </p>
+                            </div>
+
+                            <div className="">
+                              <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                                Estimated Total Security Budget:
+                              </h3>
+                              <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                                {initialValues.budget}
+                              </p>
+                            </div>
+
+                            <div className="">
+                              <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                                What products are you interested in including:
+                              </h3>
+                              <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                                {initialValues.intrested_products
+                                  ?.filter((product) => product.checked)
+                                  .map((product) => product.name)
+                                  .join(", ")}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="dark:bg-slate-700/50 bg-slate-50 mt-4 rounded-lg">
+                          <h3 className="text-base font-semibold text-slate-800 dark:text-slate-200 px-4 py-2">
+                            Project Team
+                          </h3>
+                          <div className="border-t-[1px] border-[#c2c2c2]"></div>
+                          <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 p-4">
+                            <div className="">
+                              <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                                End Customer Company:
+                              </h3>
+                              <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                                {initialValues.end_customer_company}
+                              </p>
+                            </div>
+
+                            <div className="">
+                              <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                                End Customer Contact:
+                              </h3>
+                              <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                                {initialValues.end_customer_contact}
+                              </p>
+                            </div>
+
+                            <div className="">
+                              <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                                Architect:
+                              </h3>
+                              <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                                {initialValues.architect}
+                              </p>
+                            </div>
+
+                            <div className="">
+                              <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                                MEP Engineer:
+                              </h3>
+                              <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                                {initialValues.mep_engineer}
+                              </p>
+                            </div>
+
+                            <div className="">
+                              <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                                Security / Technology Consultant:
+                              </h3>
+                              <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                                {initialValues.security_consultant}
+                              </p>
+                            </div>
+
+                            <div className="">
+                              <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                                Property Management Company:
+                              </h3>
+                              <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                                {initialValues.property_management_company}
+                              </p>
+                            </div>
+
+                            <div className="">
+                              <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
+                                General Contractor
+                              </h3>
+                              <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
+                                {initialValues.general_contractor}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  ),
+                },
+                {
                   value: "general",
                   title: "General - Part 1",
                   content: (
                     <>
                       <div>
                         <div className="border-t-[1px] border-[black]"></div>
-                        <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-4 mt-4">
-                          <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4">
-                            <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
-                              Project Name
-                            </h3>
-                            <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1">
-                              {initialValues.projectName}
-                            </p>
-                          </div>
+                        <div className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-4 mt-4">
                           <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg p-4">
                             <h3 className="text-xs font-medium text-slate-500 dark:text-slate-400 uppercase tracking-wide">
                               Issuance Description
