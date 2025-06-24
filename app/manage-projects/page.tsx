@@ -245,7 +245,7 @@ export default function ManageProjects() {
               }}
               className="border border-gray-300 rounded-md px-2 py-1 text-xs bg-white"
             >
-              {[5, 10, 15, 25, 50].map((count) => (
+              {[10, 25, 50].map((count) => (
                 <option key={count} value={count}>
                   {count}
                 </option>
