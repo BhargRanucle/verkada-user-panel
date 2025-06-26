@@ -36,6 +36,7 @@ interface DocGeneratorProps {
 }
 
 const validationSchema = Yup.object().shape({
+  rep: Yup.string().required("Please select a sales rep"),
   first_name: Yup.string().required("First name is required"),
   last_name: Yup.string().required("Last name is required"),
   company_name: Yup.string().required("Company name is required"),
@@ -47,7 +48,6 @@ const validationSchema = Yup.object().shape({
   end_customer_company: Yup.string().required(
     "End customer company is required"
   ),
-  projectName: Yup.string().required("Project name is required"),
   issuanceDescription: Yup.string().required(
     "Issuance description is required"
   ),
@@ -71,7 +71,6 @@ const validationSchema = Yup.object().shape({
   programming: Yup.string(),
   acceptance_testing: Yup.string(),
   owner_personnel_training: Yup.string(),
-  sales_rep_contact: Yup.string().required("Sales Rep Contact is required"),
   license_term: Yup.string().required("License Term is required"),
   system_monitoring: Yup.array().of(
     Yup.object().shape({
@@ -100,7 +99,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const initialValues = {
-  rep: "Eric Talley",
+  rep: "",
   first_name: "Richard",
   last_name: "Brysacz",
   project_role: "Engineer",
@@ -348,6 +347,15 @@ const initialValuesForCreate = {
   ],
 };
 
+const reps = [
+    { label: "Dan Bettencourt", value: "dan.bettencourt@verkada.com" },
+    { label: "CJ Corry", value: "cj.corry@verkada.com" },
+    { label: "Eric Talley", value: "eric.talley@verkada.com" },
+    { label: "Ashley Ott", value: "ashley.ott@verkada.com" },
+    { label: "Miles Anderson", value: "miles.anderson@verkada.com" },
+    { label: "Chad Cooper", value: "chad.cooper@verkada.com" },
+  ];
+
 const DocGenerator: React.FC<DocGeneratorProps> = ({ buttonName, id }) => {
   console.log("id",id);
   const [openItems, setOpenItems] = useState<string[]>([
@@ -395,38 +403,31 @@ const DocGenerator: React.FC<DocGeneratorProps> = ({ buttonName, id }) => {
                                   htmlFor="rep"
                                   className="text-sm font-medium text-slate-700 dark:text-slate-300"
                                 >
-                                  A&E Rep:
+                                  A&E Rep *
                                 </Label>
+
                                 <Select
-                                  onValueChange={(value) =>
-                                    setFieldValue("rep", value)
-                                  }
-                                  value={values.rep}
-                                >
-                                  <SelectTrigger className="rounded-lg">
-                                    <SelectValue placeholder="Select a Rep" />
-                                  </SelectTrigger>
-                                  <SelectContent>
-                                    <SelectItem value="Dan Bettencourt">
-                                      Dan Bettencourt
+                                onValueChange={(value) =>
+                                  setFieldValue("rep", value)
+                                }
+                                value={values.rep}
+                              >
+                                <SelectTrigger className="rounded-lg text-left">
+                                  <SelectValue placeholder="Select a Rep" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                  {reps.map((rep) => (
+                                    <SelectItem
+                                      key={rep.value}
+                                      value={rep.value}
+                                      className="text-left"
+                                    >
+                                      {rep.label}
                                     </SelectItem>
-                                    <SelectItem value="CJ Corry">
-                                      CJ Corry
-                                    </SelectItem>
-                                    <SelectItem value="Eric Talley">
-                                      Eric Talley
-                                    </SelectItem>
-                                    <SelectItem value="Ashley Ott">
-                                      Ashley Ott
-                                    </SelectItem>
-                                    <SelectItem value="Miles Anderson">
-                                      Miles Anderson
-                                    </SelectItem>
-                                    <SelectItem value="Chad Cooper">
-                                      Chad Cooper
-                                    </SelectItem>
-                                  </SelectContent>
-                                </Select>
+                                  ))}
+                                </SelectContent>
+                              </Select>
+                               
                                 {errors.rep && touched.rep && (
                                   <p className="text-red-500 text-xs">
                                     {errors.rep}
@@ -1306,7 +1307,7 @@ const DocGenerator: React.FC<DocGeneratorProps> = ({ buttonName, id }) => {
                           <div className="border-t-[1px] border-[black]"></div>
                           <div className="grid grid-cols-1 lg:grid-cols-2 md:grid-cols-2 sm:grid-cols-1 gap-4 mt-3">
                            
-                            <div className="space-y-1.5">
+                            <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg px-4 py-2 pb-3 space-y-3 mt-3">
                               <Label
                                 htmlFor="issuanceDescription"
                                 className="text-sm font-medium text-slate-700 dark:text-slate-300"
@@ -1333,7 +1334,7 @@ const DocGenerator: React.FC<DocGeneratorProps> = ({ buttonName, id }) => {
                                 )}
                             </div>
 
-                            <div className="space-y-1.5">
+                            <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg px-4 py-2 pb-3 space-y-3 mt-3">
                               <Label
                                 htmlFor="issuanceDate"
                                 className="text-sm font-medium text-slate-700 dark:text-slate-300"
@@ -1493,46 +1494,26 @@ const DocGenerator: React.FC<DocGeneratorProps> = ({ buttonName, id }) => {
                           <div className="border-t-[1px] border-[black]"></div>
 
                           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-3">
-                            <div className="space-y-1.5">
+                            <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg px-4 py-2 space-y-3 mt-3">
                               <Label
                                 htmlFor="sales_rep_contact"
                                 className="text-sm font-medium text-slate-700 dark:text-slate-300"
                               >
-                                Sales Rep Contact *
+                                Sales Rep Contact:-
                               </Label>
-                              <Select
-                                onValueChange={(value) =>
-                                  setFieldValue("sales_rep_contact", value)
-                                }
-                                value={values.sales_rep_contact}
-                              >
-                                <SelectTrigger className="rounded-lg">
-                                  <SelectValue placeholder="Select a Sales Rep Contact" />
-                                </SelectTrigger>
-                                <SelectContent>
-                                  <SelectItem value="eric.talley@verkada.com">
-                                    Eric Talley (North America East) -
-                                    eric.talley@verkada.com
-                                  </SelectItem>
-                                  <SelectItem value="chad.cooper@verkada.com">
-                                    Chad Cooper (North America West) -
-                                    chad.cooper@verkada.com
-                                  </SelectItem>
-                                  <SelectItem value="dan.bettencourt@verkada.com">
-                                    Dan Bettencourt (Texas, International) -
-                                    dan.bettencourt@verkada.com
-                                  </SelectItem>
-                                </SelectContent>
-                              </Select>
-                              {errors.sales_rep_contact &&
-                                touched.sales_rep_contact && (
-                                  <p className="text-red-500 text-xs">
-                                    {errors.sales_rep_contact}
-                                  </p>
-                                )}
+                              {values?.rep ? (
+                                <p className="font-meduim text-[15px]">
+                                  {reps.find((rep) => rep.value === values?.rep)
+                                    ?.label || "Unknown Rep"}{" "}
+                                  - {values?.rep}
+                                </p>
+                              ) : (
+                                <p className="font-meduim text-[15px]">
+                                  Not Selected
+                                </p>
+                              )}
                             </div>
-
-                            <div className="space-y-1.5">
+                            <div className="bg-slate-50 dark:bg-slate-700/50 rounded-lg px-4 py-2 pb-3 space-y-3 mt-3">
                               <Label
                                 htmlFor="license_term"
                                 className="text-sm font-medium text-slate-700 dark:text-slate-300"
